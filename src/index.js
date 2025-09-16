@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import pool from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js"
-
+import errorHandling from "./middleware/errorHandler.js";
 
 dotenv.config()
 
@@ -19,7 +19,7 @@ app.use("/api",userRoutes);
 
 
 // Error handling middleware
-
+app.use(errorHandling)
 //Testing Database connection
 app.use("/",async(req,res)=>{
     const result=await pool.query("SELECT current_database()")
